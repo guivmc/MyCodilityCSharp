@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(int[] A, int K) {
+
+        List<int> toRotate = new List<int>(A);
+        if(toRotate.Count > 0){
+            List<int> rotated = new List<int>();
+
+            for(int i = 0; i < K; i++){      
+
+                rotated = new List<int>();
+
+                rotated.Add(toRotate[toRotate.Count - 1]);
+                rotated.AddRange(toRotate.Take(toRotate.Count - 1));
+          
+                toRotate = rotated;          
+            }
+
+            return toRotate.ToArray();
+        }
+        else{
+            return A;
+        }
+    }
+}
