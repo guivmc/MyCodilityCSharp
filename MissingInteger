@@ -1,0 +1,28 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        int N = A.Length;
+        HashSet<int> set = new HashSet<int>();
+
+        foreach(int num in A){
+            if(num > 0)
+                set.Add(num);
+        }
+
+        for (int i = 1; i <= N + 1; i++) {
+            if (!set.Contains(i)) {
+                return i;
+            }
+        }
+
+        return 1;
+    }
+}
