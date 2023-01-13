@@ -1,0 +1,63 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(string S) {
+
+        if(S.Length == 0){
+            return 1;
+        }
+
+        Stack<char> stack = new Stack<char>();
+
+        char top;
+
+        foreach(char c in S){
+            if(stack.Count > 0)
+            {
+                switch(c){
+                    case ')':
+                        top = stack.Pop();
+                        if(top != '(')
+                            return 0;
+                        break;
+                    case ']':
+                        top = stack.Pop();
+                        if(top != '[' && top != ')'){
+                            return 0;
+                        }
+                        break;
+                    case '}':
+                        top = stack.Pop();
+                        if(top != '{' && top != ')' && top != ']')
+                            return 0;
+                        break;
+                    default:                   
+                        stack.Push(c);                                    
+                        break;
+                }
+            }
+            else{
+                if(c == '}' || c == ')' || c == ']'){
+                    return 0;
+                }
+                else{
+                    stack.Push(c);       
+                }
+            }            
+        }
+
+        if(stack.Count == 0){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    }
